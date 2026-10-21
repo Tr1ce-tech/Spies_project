@@ -1,0 +1,24 @@
+{
+  "Forum Profiles": [
+    {
+      "Nickname": "example_profile_1",
+      "Registered Flights": [
+        {
+          "Date": "2017-03-04",
+          "Codeshare": false,
+          "Arrival": {"City": "Pittsburgh PA", "Airport": "PIT", "Country": "United States of"},
+          "Flight": "DL3377",
+          "Departure": {"City": "Boston MA", "Airport": "BOS", "Country": "United States of"}
+        },
+        {
+          "Date": "2017-01-04",
+          "Codeshare": true,
+          "Arrival": {"City": "Warsaw", "Airport": "WAW", "Country": "Poland"},
+          "Flight": "SU3702",
+          "Departure": {"City": "Moscow", "Airport": "SVO", "Country": "Russian Federation"}
+        }
+      ]
+    },
+    {"Nickname": "example_profile_without_flights", "Registered Flights": []}
+  ]
+}

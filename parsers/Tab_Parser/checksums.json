@@ -1,0 +1,15 @@
+{
+  "README.md": "912a212c1eb16fdf22e309fcd3f186c13dbc4e37c0829e7dbadc6d1882becd33",
+  "requirements.txt": "75a5bb141f50bbce6c8b6db75359548b9f6168af6696fabf8f3357f25e8cd9f8",
+  "result/flights_part_00000.parquet": "5b9bebd6f4c3c525222298572dac069d2895947b022fa2fbc4d3c1e7fa95c2e2",
+  "result/flights_part_00001.parquet": "42dea1020cc66028015bb5379f3aaa4ed4ecdea29c9a7e61de2adb01bdb0e0d9",
+  "result/flights_part_00002.parquet": "e24504fffa70d76ad44f8bfd53cffb0f9e0ce5589d7e1f5a80c35e6b5b75538d",
+  "result/flights_part_00003.parquet": "071bb9a372c232805b198c465e250e17d34ef12bf2c2715b3e0a0dce456acb80",
+  "result/issues.csv": "4dac43d1afff88d22a2857b78f7443de26c3da63b754ece35938e0786a13e798",
+  "result/summary.json": "3a3729bde61963ce0a3e1e37eae8b9fff9a35bec8096726b9a710e5f37cffc8b",
+  "result/verification.json": "14be932caddabe094cc2badcaea0cd279041ec127d00950f15d42b42d39fdd22",
+  "sample.tab": "41bf04f3ecd8a2292798fedb2ac54ebb2fcc3bd3014259ea8339c9ecd42c4d59",
+  "tab_parser.py": "4e7398c0e32f66a25b7a94a4a6e8eb057219834eb6ead1f917492e65f774c992",
+  "test_tab_parser.py": "9cb767f4a2892195224b3982045d390a7d526a98d896aa95ec74f1f0d73f1e00",
+  "verify_tab.py": "17bf252da87474abdef857c17d69f1dacf206ab498d7bfadc7c6b79e2bbc7208"
+}

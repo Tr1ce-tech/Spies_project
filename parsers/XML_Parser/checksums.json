@@ -1,0 +1,16 @@
+{
+  "README.md": "46e03f42d2f5963955e2bb47a44f3ea40390489189ccac4249574c96f96ecedd",
+  "legacy/DS.parquet": "96d577111592a6ecc2c0a853d870289eed9c40c44ec30b97327ff541f5f807cd",
+  "legacy/PointzAggregator-AirlinesData.parquet": "be74668b6019082baa986553aab3b9cde16599ab131d1bf0461d576d37f6e6c0",
+  "legacy/README.md": "71ec3236a9b0923621eb87765d4bce27f863d1bae189afb9e7b4bfe9fea5c2b5",
+  "parse_ds_parquet.py": "bf2198fb16af7f9ad1e8f2cd966c728ca2946fecc6cf998249019b065a7b8437",
+  "requirements.txt": "c62c677e9e1498bf07c495540db8461e55e2f4e72577b3252bebd1a6d8ec76f7",
+  "result/activities.parquet": "78fc42fb845622dd1ecb4ce1cbef7934fce2617fa0f73332b57b81302884b5b0",
+  "result/cards.parquet": "c75f982e753ad3e7e24329e88441a0a83d292db928bc2e06b197bbdb87900d34",
+  "result/manifest.json": "377dc42549badd5adf57333ecfea00843b10e8e369a1cfe94ee4a2160ab69f02",
+  "result/users.parquet": "b82d693dcf2ad578cc69060ecf309570ea69e6516e27326c3841a1c842cf6886",
+  "result/verification.json": "00cb6b8b5c8bc5172e27fc51c4a09e6df18dc5cd7a0121884142e3d7491ef917",
+  "samples/DS.txt": "d6652cf8d50d3307f0dde933de42e548487e84771c379d8405afb65185022d44",
+  "test_parser.py": "c3102d08e26e9f1a40c2adf9e43d9990f8bb8b6eead4e553858f756e77472f08",
+  "verify_xml.py": "25b7314009e5054c2f97b6ebc028dacbfe5377545fbcd9e0cc6b3728e3525900"
+}

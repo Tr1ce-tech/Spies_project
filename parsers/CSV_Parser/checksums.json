@@ -1,0 +1,18 @@
+{
+  "01_csv_parser.ipynb": "4bfff4048f51acb287bc8d1c9231c8249c112474942b3258a6bc2499aadad612",
+  "README.md": "b177602d2af19595ed5e79c395ab5c2bda16f0a9ee8d7993f42089998e3c9724",
+  "logs/full_parse.log": "3b7b4b8ddd85c0055926e9c5b659e46240e253011bb6edb456d6a452fbfcdf16",
+  "logs/full_verify.log": "cf38e17cb96c8794f6d42c810957f67fa0b4c0058f24b63a899ea32cb4aa0f2a",
+  "logs/tests.log": "2845c0809c939ea27ccb6e4145dd48915c675dec768580345b4f936d675d435f",
+  "parse_csv.py": "edefa1314637fd6679b80f7bd76eb328700e0b6c3ade3bf590484358f395fb77",
+  "requirements.txt": "75a5bb141f50bbce6c8b6db75359548b9f6168af6696fabf8f3357f25e8cd9f8",
+  "result/environment.json": "65e6b9bb1cd948fcec50da4ca7da20c686a7dd4976febc1cfd025c372216dc99",
+  "result/fields.json": "fffd33be19071a7fa8820b12960637a75d1a7a97567aa72652b9d02ffd098f4e",
+  "result/issues.parquet": "a57bf0487b94fb1e1b93b071507da06ee76a24c44a56654eac583450c870cef7",
+  "result/manifest.json": "f1519041f91067184b62809afbbcf041cbceb3d38db0b556c989b3aca38a30f4",
+  "result/raw_records.parquet": "5f2f01ddf9e6d3885a1265b9dcc0d4f093ba620bb58c39e161d85ebb0cf85dee",
+  "result/records.parquet": "df115dff3cd4eac215cdfb6fb5a8826498e0523606c74137b62146647b8fcde0",
+  "result/verification.json": "33cda37605e3c1b84e1eafc1bf16d2e596083c49558f61da8a97fdb3c0f15c06",
+  "test_parser.py": "0c11875fbdf2017eab2397c16b31cd3361b4bd03ca8d6e72688a4c98633bc820",
+  "verify_csv.py": "c218d45f982f1200b3aaf1d5393098f109a6e611cbf1b09696f236ff841111fd"
+}
