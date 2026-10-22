@@ -50,6 +50,21 @@ def workbook_bytes(sheets):
 
 
 class ParserTests(unittest.TestCase):
+    def test_macos_metadata_is_not_a_workbook(self):
+        values = {"A1": "BOARDING PASS", "A13": "PNR:", "D13": "E-TICKET"}
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "input.zip"
+            output = Path(directory) / "out.parquet"
+            with zipfile.ZipFile(source, "w") as archive:
+                archive.writestr("source/a.xlsx", workbook_bytes([("Sheet1", values)]))
+                archive.writestr("__MACOSX/source/._a.xlsx", b"AppleDouble metadata")
+                archive.writestr("source/._b.xlsx", b"AppleDouble metadata")
+            result = parser.parse_archive(source, output)
+            self.assertTrue(result["complete"])
+            self.assertEqual(result["xlsx_members_total"], 1)
+            self.assertEqual(result["row_count"], 1)
+            self.assertEqual(len(result["other_archive_members"]), 2)
+
     def test_corrupt_directory_offsets_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             source = Path(directory) / "input.zip"

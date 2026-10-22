@@ -103,7 +103,10 @@ def verify(archive_path, parquet_path):
         xlsx_members = [
             e.filename
             for e in outer.infolist()
-            if not e.is_dir() and e.filename.lower().endswith(".xlsx")
+            if not e.is_dir()
+            and e.filename.lower().endswith(".xlsx")
+            and "__MACOSX" not in Path(e.filename).parts
+            and not Path(e.filename).name.startswith("._")
         ]
         assert len(xlsx_members) == manifest["xlsx_members_total"]
         if not manifest["limited_run"]:

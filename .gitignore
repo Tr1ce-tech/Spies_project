@@ -63,3 +63,23 @@ Desktop.ini
 !.env.template
 *.pem
 *.key
+
+/proceed_data/
+/outputs/
+
+# Generated research reports and local model artifacts
+/reports/
+*.joblib
+*.pkl
+*.pickle
+*.duckdb
+*.duckdb.wal
+
+# Local tooling and temporary files
+.ipython/
+.jupyter/
+.cache/
+.hypothesis/
+.python-version
+*.orig
+*.rej

@@ -1,0 +1,978 @@
+{
+  "csv": [
+    {
+      "name": "record_id",
+      "type": "string"
+    },
+    {
+      "name": "source_file",
+      "type": "string"
+    },
+    {
+      "name": "source_sha256",
+      "type": "string"
+    },
+    {
+      "name": "source_record_number",
+      "type": "int64"
+    },
+    {
+      "name": "source_line_start",
+      "type": "int64"
+    },
+    {
+      "name": "source_line_end",
+      "type": "int64"
+    },
+    {
+      "name": "rule_version",
+      "type": "string"
+    },
+    {
+      "name": "passenger_first_name_raw",
+      "type": "string"
+    },
+    {
+      "name": "passenger_second_name_raw",
+      "type": "string"
+    },
+    {
+      "name": "passenger_last_name_raw",
+      "type": "string"
+    },
+    {
+      "name": "passenger_sex_raw",
+      "type": "string"
+    },
+    {
+      "name": "passenger_birth_date_raw",
+      "type": "string"
+    },
+    {
+      "name": "passenger_document_raw",
+      "type": "string"
+    },
+    {
+      "name": "booking_code_raw",
+      "type": "string"
+    },
+    {
+      "name": "ticket_number_raw",
+      "type": "string"
+    },
+    {
+      "name": "baggage_raw",
+      "type": "string"
+    },
+    {
+      "name": "flight_date_raw",
+      "type": "string"
+    },
+    {
+      "name": "flight_time_raw",
+      "type": "string"
+    },
+    {
+      "name": "flight_number_raw",
+      "type": "string"
+    },
+    {
+      "name": "code_share_raw",
+      "type": "string"
+    },
+    {
+      "name": "destination_text_raw",
+      "type": "string"
+    },
+    {
+      "name": "passenger_first_name",
+      "type": "string"
+    },
+    {
+      "name": "passenger_second_name",
+      "type": "string"
+    },
+    {
+      "name": "passenger_last_name",
+      "type": "string"
+    },
+    {
+      "name": "passenger_sex",
+      "type": "string"
+    },
+    {
+      "name": "passenger_birth_date",
+      "type": "date32[day]"
+    },
+    {
+      "name": "passenger_document",
+      "type": "string"
+    },
+    {
+      "name": "booking_code",
+      "type": "string"
+    },
+    {
+      "name": "ticket_number",
+      "type": "string"
+    },
+    {
+      "name": "baggage",
+      "type": "string"
+    },
+    {
+      "name": "flight_date",
+      "type": "date32[day]"
+    },
+    {
+      "name": "flight_time",
+      "type": "string"
+    },
+    {
+      "name": "flight_number",
+      "type": "string"
+    },
+    {
+      "name": "code_share",
+      "type": "string"
+    },
+    {
+      "name": "destination_text",
+      "type": "string"
+    },
+    {
+      "name": "birth_date_candidates_json",
+      "type": "string"
+    },
+    {
+      "name": "birth_year",
+      "type": "int32"
+    },
+    {
+      "name": "field_status_json",
+      "type": "string"
+    },
+    {
+      "name": "record_status",
+      "type": "string"
+    },
+    {
+      "name": "source_fields_sha256",
+      "type": "string"
+    }
+  ],
+  "tab": [
+    {
+      "name": "PaxName",
+      "type": "large_string"
+    },
+    {
+      "name": "PaxBirthDate",
+      "type": "large_string"
+    },
+    {
+      "name": "DepartDate",
+      "type": "large_string"
+    },
+    {
+      "name": "DepartTime",
+      "type": "large_string"
+    },
+    {
+      "name": "ArrivalDate",
+      "type": "large_string"
+    },
+    {
+      "name": "ArrivalTime",
+      "type": "large_string"
+    },
+    {
+      "name": "FlightCode",
+      "type": "large_string"
+    },
+    {
+      "name": "Sh",
+      "type": "large_string"
+    },
+    {
+      "name": "From",
+      "type": "large_string"
+    },
+    {
+      "name": "Dest",
+      "type": "large_string"
+    },
+    {
+      "name": "Code",
+      "type": "large_string"
+    },
+    {
+      "name": "e-Ticket",
+      "type": "large_string"
+    },
+    {
+      "name": "TravelDoc",
+      "type": "large_string"
+    },
+    {
+      "name": "Seat",
+      "type": "large_string"
+    },
+    {
+      "name": "Meal",
+      "type": "large_string"
+    },
+    {
+      "name": "TrvCls",
+      "type": "large_string"
+    },
+    {
+      "name": "Fare",
+      "type": "large_string"
+    },
+    {
+      "name": "Baggage",
+      "type": "large_string"
+    },
+    {
+      "name": "PaxAdditionalInfo",
+      "type": "large_string"
+    },
+    {
+      "name": "FrequentFlyer",
+      "type": "large_string"
+    },
+    {
+      "name": "AgentInfo",
+      "type": "large_string"
+    },
+    {
+      "name": "source_file",
+      "type": "large_string"
+    },
+    {
+      "name": "source_line",
+      "type": "int64"
+    },
+    {
+      "name": "parse_status",
+      "type": "large_string"
+    },
+    {
+      "name": "raw_line",
+      "type": "large_string"
+    },
+    {
+      "name": "raw_bytes_b64",
+      "type": "large_string"
+    },
+    {
+      "name": "record_id",
+      "type": "large_string"
+    },
+    {
+      "name": "source_sha256",
+      "type": "large_string"
+    },
+    {
+      "name": "rule_version",
+      "type": "large_string"
+    }
+  ],
+  "excel": [
+    {
+      "name": "record_id",
+      "type": "string"
+    },
+    {
+      "name": "source_archive",
+      "type": "string"
+    },
+    {
+      "name": "source_archive_sha256",
+      "type": "string"
+    },
+    {
+      "name": "source_file",
+      "type": "string"
+    },
+    {
+      "name": "source_file_sha256",
+      "type": "string"
+    },
+    {
+      "name": "source_sheet",
+      "type": "string"
+    },
+    {
+      "name": "source_sheet_xml",
+      "type": "string"
+    },
+    {
+      "name": "rule_version",
+      "type": "string"
+    },
+    {
+      "name": "parse_status",
+      "type": "string"
+    },
+    {
+      "name": "errors_json",
+      "type": "string"
+    },
+    {
+      "name": "raw_cells_json",
+      "type": "string"
+    },
+    {
+      "name": "cell_types_json",
+      "type": "string"
+    },
+    {
+      "name": "formulas_json",
+      "type": "string"
+    },
+    {
+      "name": "field_status_json",
+      "type": "string"
+    },
+    {
+      "name": "source_sheet_index",
+      "type": "int32"
+    },
+    {
+      "name": "passenger_title_raw",
+      "type": "string"
+    },
+    {
+      "name": "passenger_title",
+      "type": "string"
+    },
+    {
+      "name": "passenger_name_raw",
+      "type": "string"
+    },
+    {
+      "name": "passenger_name",
+      "type": "string"
+    },
+    {
+      "name": "loyalty_card_raw",
+      "type": "string"
+    },
+    {
+      "name": "loyalty_card",
+      "type": "string"
+    },
+    {
+      "name": "travel_class_raw",
+      "type": "string"
+    },
+    {
+      "name": "travel_class",
+      "type": "string"
+    },
+    {
+      "name": "flight_number_raw",
+      "type": "string"
+    },
+    {
+      "name": "flight_number",
+      "type": "string"
+    },
+    {
+      "name": "origin_city_raw",
+      "type": "string"
+    },
+    {
+      "name": "origin_city",
+      "type": "string"
+    },
+    {
+      "name": "destination_city_raw",
+      "type": "string"
+    },
+    {
+      "name": "destination_city",
+      "type": "string"
+    },
+    {
+      "name": "gate_raw",
+      "type": "string"
+    },
+    {
+      "name": "gate",
+      "type": "string"
+    },
+    {
+      "name": "origin_airport_raw",
+      "type": "string"
+    },
+    {
+      "name": "origin_airport",
+      "type": "string"
+    },
+    {
+      "name": "destination_airport_raw",
+      "type": "string"
+    },
+    {
+      "name": "destination_airport",
+      "type": "string"
+    },
+    {
+      "name": "departure_date_raw",
+      "type": "string"
+    },
+    {
+      "name": "departure_date",
+      "type": "date32[day]"
+    },
+    {
+      "name": "departure_time_raw",
+      "type": "string"
+    },
+    {
+      "name": "departure_time",
+      "type": "string"
+    },
+    {
+      "name": "operator_text_raw",
+      "type": "string"
+    },
+    {
+      "name": "operator_text",
+      "type": "string"
+    },
+    {
+      "name": "boarding_note_raw",
+      "type": "string"
+    },
+    {
+      "name": "boarding_note",
+      "type": "string"
+    },
+    {
+      "name": "seat_raw",
+      "type": "string"
+    },
+    {
+      "name": "seat",
+      "type": "string"
+    },
+    {
+      "name": "booking_reference_raw",
+      "type": "string"
+    },
+    {
+      "name": "booking_reference",
+      "type": "string"
+    },
+    {
+      "name": "ticket_number_raw",
+      "type": "string"
+    },
+    {
+      "name": "ticket_number",
+      "type": "string"
+    },
+    {
+      "name": "sequence_number_raw",
+      "type": "string"
+    },
+    {
+      "name": "sequence_number",
+      "type": "string"
+    }
+  ],
+  "json_profiles": [
+    {
+      "name": "source_file",
+      "type": "large_string"
+    },
+    {
+      "name": "profile_index",
+      "type": "int64"
+    },
+    {
+      "name": "flight_rows",
+      "type": "int64"
+    },
+    {
+      "name": "loyalty_rows",
+      "type": "int64"
+    },
+    {
+      "name": "profile_status",
+      "type": "large_string"
+    },
+    {
+      "name": "metadata_json",
+      "type": "large_string"
+    },
+    {
+      "name": "raw_profile_json",
+      "type": "large_string"
+    },
+    {
+      "name": "source_sha256",
+      "type": "large_string"
+    },
+    {
+      "name": "rule_version",
+      "type": "large_string"
+    },
+    {
+      "name": "profile_record_id",
+      "type": "large_string"
+    },
+    {
+      "name": "record_id",
+      "type": "large_string"
+    }
+  ],
+  "json_cards": [
+    {
+      "name": "source_file",
+      "type": "large_string"
+    },
+    {
+      "name": "profile_index",
+      "type": "int64"
+    },
+    {
+      "name": "loyalty_index",
+      "type": "int64"
+    },
+    {
+      "name": "loyalty_group_index",
+      "type": "int64"
+    },
+    {
+      "name": "loyalty_key",
+      "type": "large_string"
+    },
+    {
+      "name": "Status",
+      "type": "large_string"
+    },
+    {
+      "name": "programm",
+      "type": "large_string"
+    },
+    {
+      "name": "Number",
+      "type": "large_string"
+    },
+    {
+      "name": "parse_status",
+      "type": "large_string"
+    },
+    {
+      "name": "extra_fields_json",
+      "type": "large_string"
+    },
+    {
+      "name": "raw_loyalty_json",
+      "type": "large_string"
+    },
+    {
+      "name": "source_sha256",
+      "type": "large_string"
+    },
+    {
+      "name": "rule_version",
+      "type": "large_string"
+    },
+    {
+      "name": "profile_record_id",
+      "type": "large_string"
+    },
+    {
+      "name": "record_id",
+      "type": "large_string"
+    }
+  ],
+  "json_flights": [
+    {
+      "name": "source_file",
+      "type": "large_string"
+    },
+    {
+      "name": "profile_index",
+      "type": "int64"
+    },
+    {
+      "name": "flight_index",
+      "type": "int64"
+    },
+    {
+      "name": "flight_group_index",
+      "type": "int64"
+    },
+    {
+      "name": "Date",
+      "type": "large_string"
+    },
+    {
+      "name": "Flight",
+      "type": "large_string"
+    },
+    {
+      "name": "Codeshare",
+      "type": "bool"
+    },
+    {
+      "name": "Departure_City",
+      "type": "large_string"
+    },
+    {
+      "name": "Departure_Airport",
+      "type": "large_string"
+    },
+    {
+      "name": "Departure_Country",
+      "type": "large_string"
+    },
+    {
+      "name": "Arrival_City",
+      "type": "large_string"
+    },
+    {
+      "name": "Arrival_Airport",
+      "type": "large_string"
+    },
+    {
+      "name": "Arrival_Country",
+      "type": "large_string"
+    },
+    {
+      "name": "parse_status",
+      "type": "large_string"
+    },
+    {
+      "name": "extra_fields_json",
+      "type": "large_string"
+    },
+    {
+      "name": "raw_flight_json",
+      "type": "large_string"
+    },
+    {
+      "name": "source_sha256",
+      "type": "large_string"
+    },
+    {
+      "name": "rule_version",
+      "type": "large_string"
+    },
+    {
+      "name": "profile_record_id",
+      "type": "large_string"
+    },
+    {
+      "name": "record_id",
+      "type": "large_string"
+    }
+  ],
+  "xml_users": [
+    {
+      "name": "source_file",
+      "type": "string"
+    },
+    {
+      "name": "source_sha256",
+      "type": "string"
+    },
+    {
+      "name": "rule_version",
+      "type": "string"
+    },
+    {
+      "name": "source_locator",
+      "type": "string"
+    },
+    {
+      "name": "user_record_id",
+      "type": "string"
+    },
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "user_first_name",
+      "type": "string"
+    },
+    {
+      "name": "user_last_name",
+      "type": "string"
+    },
+    {
+      "name": "user_attrs_json",
+      "type": "string"
+    },
+    {
+      "name": "name_attrs_json",
+      "type": "string"
+    },
+    {
+      "name": "raw_user_xml",
+      "type": "string"
+    }
+  ],
+  "xml_cards": [
+    {
+      "name": "source_file",
+      "type": "string"
+    },
+    {
+      "name": "source_sha256",
+      "type": "string"
+    },
+    {
+      "name": "rule_version",
+      "type": "string"
+    },
+    {
+      "name": "source_locator",
+      "type": "string"
+    },
+    {
+      "name": "user_record_id",
+      "type": "string"
+    },
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "card_record_id",
+      "type": "string"
+    },
+    {
+      "name": "card_number",
+      "type": "string"
+    },
+    {
+      "name": "card_program_raw",
+      "type": "string"
+    },
+    {
+      "name": "card_program",
+      "type": "string"
+    },
+    {
+      "name": "card_attrs_json",
+      "type": "string"
+    }
+  ],
+  "xml_activities": [
+    {
+      "name": "source_file",
+      "type": "string"
+    },
+    {
+      "name": "source_sha256",
+      "type": "string"
+    },
+    {
+      "name": "rule_version",
+      "type": "string"
+    },
+    {
+      "name": "source_locator",
+      "type": "string"
+    },
+    {
+      "name": "user_record_id",
+      "type": "string"
+    },
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "record_id",
+      "type": "string"
+    },
+    {
+      "name": "card_record_id",
+      "type": "string"
+    },
+    {
+      "name": "card_number",
+      "type": "string"
+    },
+    {
+      "name": "card_program",
+      "type": "string"
+    },
+    {
+      "name": "activity_type",
+      "type": "string"
+    },
+    {
+      "name": "activity_attrs_json",
+      "type": "string"
+    },
+    {
+      "name": "field_status_json",
+      "type": "string"
+    },
+    {
+      "name": "flight_number_raw",
+      "type": "string"
+    },
+    {
+      "name": "flight_number",
+      "type": "string"
+    },
+    {
+      "name": "flight_date_raw",
+      "type": "string"
+    },
+    {
+      "name": "flight_date",
+      "type": "date32[day]"
+    },
+    {
+      "name": "departure_iata_raw",
+      "type": "string"
+    },
+    {
+      "name": "departure_iata",
+      "type": "string"
+    },
+    {
+      "name": "arrival_iata_raw",
+      "type": "string"
+    },
+    {
+      "name": "arrival_iata",
+      "type": "string"
+    },
+    {
+      "name": "fare_class_raw",
+      "type": "string"
+    },
+    {
+      "name": "fare_class",
+      "type": "string"
+    }
+  ],
+  "yaml_entries": [
+    {
+      "name": "source_file",
+      "type": "string"
+    },
+    {
+      "name": "source_sha256",
+      "type": "string"
+    },
+    {
+      "name": "rule_version",
+      "type": "string"
+    },
+    {
+      "name": "date_raw",
+      "type": "string"
+    },
+    {
+      "name": "flight_number_raw",
+      "type": "string"
+    },
+    {
+      "name": "flight_number",
+      "type": "string"
+    },
+    {
+      "name": "origin_raw",
+      "type": "string"
+    },
+    {
+      "name": "origin",
+      "type": "string"
+    },
+    {
+      "name": "destination_raw",
+      "type": "string"
+    },
+    {
+      "name": "destination",
+      "type": "string"
+    },
+    {
+      "name": "status_raw",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "name": "date",
+      "type": "date32[day]"
+    },
+    {
+      "name": "source_date_line",
+      "type": "int64"
+    },
+    {
+      "name": "entry_id",
+      "type": "string"
+    },
+    {
+      "name": "flight_record_id",
+      "type": "string"
+    },
+    {
+      "name": "loyalty_key_raw",
+      "type": "string"
+    },
+    {
+      "name": "loyalty_program",
+      "type": "string"
+    },
+    {
+      "name": "loyalty_number",
+      "type": "string"
+    },
+    {
+      "name": "class_raw",
+      "type": "string"
+    },
+    {
+      "name": "travel_class",
+      "type": "string"
+    },
+    {
+      "name": "fare_raw",
+      "type": "string"
+    },
+    {
+      "name": "fare",
+      "type": "string"
+    },
+    {
+      "name": "raw_entry_json",
+      "type": "string"
+    },
+    {
+      "name": "loyalty_key_style",
+      "type": "string"
+    },
+    {
+      "name": "field_status_json",
+      "type": "string"
+    },
+    {
+      "name": "source_line",
+      "type": "int64"
+    },
+    {
+      "name": "source_column",
+      "type": "int32"
+    }
+  ]
+}

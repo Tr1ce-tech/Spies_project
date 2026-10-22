@@ -1,0 +1,9 @@
+{
+  "criteria": {
+    "high_frequency": {"minimum": 30},
+    "many_routes": {"minimum": 25},
+    "document_discrepancy": {"minimum": 2}
+  },
+  "match": "any",
+  "unit_kinds": ["source_profile"]
+}

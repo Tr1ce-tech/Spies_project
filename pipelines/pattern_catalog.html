@@ -1,0 +1,54 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><title>Профили с заданными паттернами</title>
+<style>
+body{font:15px system-ui;margin:28px;color:#23364b;background:#fafbfd}h1{font-size:25px}h2{font-size:20px}.controls,.box{background:white;border:1px solid #d2dce7;border-radius:6px;padding:16px;margin:16px 0}.rules{display:flex;flex-wrap:wrap;gap:14px}input,select,button{font:inherit;padding:7px}button{cursor:pointer}label{display:inline-block;margin:6px 10px 6px 0}table{border-collapse:collapse;background:white;width:100%;font-size:13px}td,th{padding:9px;border-bottom:1px solid #d9e1ea;text-align:left}th{background:#e7edf5}small{color:#50627a}.scroll{overflow:auto}td{max-width:380px;overflow-wrap:anywhere}.tag{display:inline-block;padding:3px 6px;margin:2px;background:#eef2f7;border-radius:4px;font-size:12px}.hint{max-width:1100px;line-height:1.5}summary{cursor:pointer}#detail{scroll-margin-top:16px}a{color:#245c9b}
+</style>
+<h1>Профили с заданными паттернами поездок</h1>
+<p class="hint">Отбор по пяти прозрачным правилам, без Isolation Forest. Показатели описывают записи источников и предварительные связи. Наблюдения не подтверждают фактически совершённые перелёты или намерения человека.</p>
+<div class="controls">
+<label>Представление <select id="kind"><option value="source_profile">Локальные профили источников</option><option value="preliminary_group">Предварительные группы</option></select></label>
+<label>Сочетание <select id="mode"><option value="any">Хотя бы один выбранный признак</option><option value="all">Все выбранные признаки</option></select></label>
+<label>Имя или ID <input id="query" type="search" placeholder="Поиск по источникам и именам"></label>
+<label>Сортировка <select id="sort"><option value="flight_days">Число блоков дата/рейс</option><option value="distinct_routes">Число направлений</option><option value="peak7_share">Концентрация за 7 дней</option><option value="route_rarity">Редкость направлений</option></select></label>
+<div id="rules" class="rules"></div>
+<p><button id="export">Скачать отфильтрованные профили JSON</button></p>
+</div>
+<p id="totals"></p><p id="scope" class="hint"></p>
+<div class="scroll"><table><thead><tr><th>Имя из источника / варианты</th><th>Источники</th><th>Блоков дата/рейс</th><th>Направлений</th><th>Главный маршрут</th><th>Пиковые 7 дней</th><th>Сработавшие признаки</th><th>Подробности</th></tr></thead><tbody id="list"></tbody></table></div>
+<p><button id="previous">Назад</button> <span id="page"></span> <button id="next">Далее</button></p>
+<section id="detail" class="box" hidden></section>
+<details class="box"><summary>Как читать результаты</summary><p>Модель не используется для отбора. Правила рассчитаны среди единиц с минимум 5 блоками дата/рейс и 3 разными датами, с согласованным маршрутом минимум в 80% блоков и минимум 200 единицами в сопоставимой когорте. Имена приведены из нормализованных полей источников; варианты групп не исправлялись и не выбирались автоматически.</p><p>Частота, разнообразие, концентрация и редкость сравниваются с 99-м процентилем собственной когорты. Сильное повторение: минимум 5 блоков одного маршрута и его доля от 80%. Концентрация дополнительно требует минимум 10 блоков, редкость — минимум 3 направлений. Порог не является вероятностью аномалии.</p><p>Повтор одного дата/рейса внутри профиля схлопнут для измерений, но первичные записи сохранены. Разные маршруты внутри такого блока удержаны как конфликт. У локального профиля и предварительной группы могут быть одни исходные записи: их количества нельзя складывать как число людей.</p><p>На страницах показаны все найденные единицы, по 50 за страницу. Экспорт включает весь результат фильтра, а не только текущую страницу. Данные не отправляются в сеть. Проверка документов находится в <a href="../document_review_v1/review.html">отдельном разборе</a>.</p></details>
+<script type="application/json" id="data">__CATALOG_DATA__</script>
+<script>
+const data=JSON.parse(document.getElementById('data').textContent),$=id=>document.getElementById(id);
+const escape=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pct=v=>v==null?'нет данных':(100*v).toFixed(1)+'%', num=v=>v==null?'нет данных':Number(v).toFixed(3).replace(/\.?0+$/,'');
+const names=r=>[...new Set(r.names.map(n=>n.source+': '+(n.full_name||[n.last_name,n.first_name,n.middle_name].filter(Boolean).join(' ')||'имя отсутствует')))];
+for(const row of data.candidates){row.search=[row.unit_id,...names(row)].join(' ').toLocaleLowerCase('ru');}
+const lookup=new Map(data.candidates.map(r=>[r.unit_id,r]));
+$('rules').innerHTML=Object.entries(data.labels).map(([k,v])=>`<label><input type="checkbox" value="${k}" checked> ${escape(v)} <small id="count-${k}"></small></label>`).join('');
+let filtered=[],page=0;const size=50;
+function update(reset=true){
+ if(reset)page=0;
+ const selected=[...$('rules').querySelectorAll('input:checked')].map(n=>n.value),kind=$('kind').value,q=$('query').value.trim().toLocaleLowerCase('ru'),mode=$('mode').value,sort=$('sort').value;
+ filtered=data.candidates.filter(r=>r.unit_kind===kind&&(!q||r.search.includes(q))&&(selected.length===0||(mode==='all'?selected.every(k=>r.patterns.includes(k)):selected.some(k=>r.patterns.includes(k))))).sort((a,b)=>b[sort]-a[sort]||a.unit_id.localeCompare(b.unit_id));
+ for(const k of Object.keys(data.labels))$('count-'+k).textContent='('+data.counts[kind][k].toLocaleString('ru')+')';
+ $('totals').textContent='Найдено: '+filtered.length.toLocaleString('ru')+'. '+(kind==='source_profile'?'Локальные профили анализируются отдельно по источникам.':'Это предварительные группы, не подтверждённые личности.');
+ $('scope').textContent='По строгому критерию сильного повторения случаев нет. Если потребовать все пять признаков одновременно, результат будет пустым. Сброс всех галочек показывает все найденные профили этого представления.';
+ page=Math.min(page,Math.max(0,Math.ceil(filtered.length/size)-1));
+ $('list').innerHTML=filtered.slice(page*size,(page+1)*size).map(r=>`<tr><td>${names(r).map(escape).join('<br>')}<br><small>${escape(r.unit_id)}</small></td><td>${escape(r.source_signature)}</td><td>${r.flight_days}</td><td>${r.distinct_routes}</td><td>${pct(r.top_route_share)} (${r.top_route_flight_days}/${r.routed_flight_days})</td><td>${pct(r.peak7_share)} (${r.peak7_flight_days}/${r.flight_days})</td><td>${r.patterns.map(k=>`<span class="tag">${escape(data.labels[k])}</span>`).join('')}</td><td><button data-unit="${escape(r.unit_id)}">Показатели и поездки</button></td></tr>`).join('');
+ $('page').textContent=filtered.length?`Страница ${page+1} из ${Math.ceil(filtered.length/size)}`:'Нет подходящих записей';
+ $('previous').disabled=page===0;$('next').disabled=(page+1)*size>=filtered.length;
+}
+function table(headers,rows){return '<div class="scroll"><table><thead><tr>'+headers.map(h=>'<th>'+escape(h)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(c=>'<td>'+escape(c)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';}
+function show(uid){const r=lookup.get(uid),cut=r.thresholds;
+ const metrics=[['Частота',r.flight_days,'> '+num(cut.flight_days),'Разных блоков дата/рейс'],['Разнообразие',r.distinct_routes,'> '+num(cut.distinct_routes),'Направлений с согласованным маршрутом'],['Повторяемость',pct(r.top_route_share),'≥ 80%, минимум 5 повторов',`${r.top_route_flight_days} / ${r.routed_flight_days} блоков с маршрутом`],['Концентрация',pct(r.peak7_share),'> '+pct(cut.peak7_share)+', минимум 10 блоков',`${r.peak7_flight_days} / ${r.flight_days} в окне 7 дней`],['Редкость',num(r.route_rarity),'> '+num(cut.route_rarity)+', минимум 3 направления','Среднее −log представленности, взвешенное блоками']];
+ $('detail').hidden=false;$('detail').innerHTML='<h2>'+names(r).map(escape).join('<br>')+'</h2><p>'+escape(r.unit_id)+'</p><p>Когорта: '+escape(r.cohort)+'; сопоставимых единиц: '+r.eligible_units+'. Период записей: '+escape(r.first_date)+' — '+escape(r.last_date)+'.</p><p>Первичных наблюдений: '+r.raw_observations+'; блоков дата/рейс: '+r.flight_days+'; покрытие маршрутами: '+pct(r.route_coverage)+'; конфликтующих блоков маршрута: '+r.route_conflict_flight_days+'.</p>'+table(['Показатель','Значение','Условие','Знаменатель / смысл'],metrics)+'<h3>Направления</h3>'+table(['Откуда','Куда','Блоков','Разных дат','Доля среди остальных единиц когорты'],r.routes.map(x=>[x.origin,x.destination,x.flight_days,x.dates,pct(x.other_units_share)]))+'<h3>Наблюдаемые даты и рейсы</h3>'+table(['Дата','Рейс','Откуда','Куда','Первичных наблюдений','Вариантов маршрута','Разных известных времён'],r.flights.map(x=>[x.date_key,x.flight_key,x.origin??'не установлено',x.destination??'не установлено',x.raw_observations,x.route_variants,x.known_time_variants]))+'<details><summary>Происхождение имён и записей</summary>'+table(['Источник','entity_id','source_record_id','Локатор','SHA-256 источника','Версия парсера'],r.names.map(x=>[x.source,x.entity_id,x.source_record_id,x.source_locator,x.source_sha256,x.source_rule_version]))+'<p>Полная связь с '+r.observation_count+' первичными наблюдениями сохранена в <a href="observation_members.parquet">observation_members.parquet</a>. Фильтр для анализа: unit_id = '+escape(r.unit_id)+'.</p></details>';
+ $('detail').scrollIntoView({behavior:'smooth',block:'start'});
+}
+for(const id of ['kind','mode','sort'])$(id).addEventListener('change',()=>update());
+$('query').addEventListener('input',()=>update());$('rules').addEventListener('change',()=>update());
+$('previous').onclick=()=>{page--;update(false)};$('next').onclick=()=>{page++;update(false)};
+$('list').addEventListener('click',e=>{const b=e.target.closest('button[data-unit]');if(b)show(b.dataset.unit)});
+$('export').onclick=()=>{const rows=filtered.map(({search,...r})=>r),blob=new Blob([JSON.stringify(rows,null,2)],{type:'application/json'}),link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='profiles_with_patterns.json';link.click();URL.revokeObjectURL(link.href)};
+update();
+</script></html>

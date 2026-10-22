@@ -19,7 +19,7 @@ from pathlib import Path
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-VERSION = "excel-tickets-1.0.0"
+VERSION = "excel-tickets-1.0.1"
 NS = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 REL_ID = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id"
 MISSING = {"N/A", "NA", "NULL", "NONE", "NAN", "-"}
@@ -236,6 +236,16 @@ def worksheet_list(book):
         yield index, sheet.attrib["name"], target
 
 
+def is_workbook_member(entry):
+    parts = Path(entry.filename).parts
+    return (
+        not entry.is_dir()
+        and entry.filename.lower().endswith(".xlsx")
+        and "__MACOSX" not in parts
+        and not Path(entry.filename).name.startswith("._")
+    )
+
+
 def parse_archive(input_path, output_path, max_books=None, batch_size=4096):
     input_path, output_path = Path(input_path), Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -262,11 +272,7 @@ def parse_archive(input_path, output_path, max_books=None, batch_size=4096):
         names = [e.filename for e in entries]
         if len(names) != len(set(names)):
             raise ValueError("Duplicate archive member names")
-        members = sorted(
-            e.filename
-            for e in entries
-            if not e.is_dir() and e.filename.lower().endswith(".xlsx")
-        )
+        members = sorted(e.filename for e in entries if is_workbook_member(e))
         selected = members if max_books is None else members[:max_books]
         if not selected:
             raise ValueError("No XLSX workbooks found")
@@ -382,9 +388,7 @@ def parse_archive(input_path, output_path, max_books=None, batch_size=4096):
         "errors": errors,
         "workbooks": books,
         "other_archive_members": [
-            e.filename
-            for e in entries
-            if not e.is_dir() and not e.filename.lower().endswith(".xlsx")
+            e.filename for e in entries if not e.is_dir() and not is_workbook_member(e)
         ],
         "seconds": round(time.perf_counter() - start, 3),
         "output_filename": output_path.name,
